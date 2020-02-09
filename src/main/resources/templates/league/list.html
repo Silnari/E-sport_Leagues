@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - ligi</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+
+        <header>Lista wszystkich lig</header>
+
+        <table id="leagueTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Gra</th>
+                <th>Maksymalna liczba drużyn</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="league: ${list}" class="clickable-row" th:data="${league.id}"
+                th:onclick="javascript:rowClicked(this.getAttribute('data'));">
+                <td th:text="${league.name}"></td>
+                <td th:text="${league.gameName}"></td>
+                <td th:text="${league.numberOfTeams}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <script>
+            function rowClicked(value) {
+                location.href = "/league/" + value;
+            }
+        </script>
+    </div>
+
+</div>
+</body>
+</html>

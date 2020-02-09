@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - admin</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Dodaj drużynę do ligi</header>
+
+        <form th:action="@{/admin/add/leagueTeam}" th:object="${newTeamInLeague}" method="post">
+            <table class="very-long-search-table">
+                <tr>
+                    <td>
+                        <p><label for="teamName">Podaj nazwę drużyny:</label></p>
+                    </td>
+                    <td>
+                        <input style="width: 80%" class="form-control" type="text" id="teamName"
+                               th:field="${newTeamInLeague.id_team}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="leagueName">Podaj nazwę ligi:</label></p>
+                    </td>
+                    <td>
+                        <input style="width: 80%" class="form-control" type="text" id="leagueName"
+                               th:field="${newTeamInLeague.id_league}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="points">Podaj liczbe punktów:</label></p>
+                    </td>
+                    <td>
+                        <input style="width: 80%" class="form-control" type="text" id="points"
+                               th:field="${newTeamInLeague.points}"/>
+                    </td>
+                    <td>
+                        <p>Pole nieobowiązkowe, jest ono automatycznie uzupełniane</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="numberOfWins">Podaj liczbe wygranych:</label></p>
+                    </td>
+                    <td>
+                        <input style="width: 80%" class="form-control" type="text" id="numberOfWins"
+                               th:field="${newTeamInLeague.numberOfWins}"/>
+                    </td>
+                    <td>
+                        <p>Pole nieobowiązkowe, jest ono automatycznie uzupełniane</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="numberOfLosses">Podaj liczbe przegranych:</label></p>
+                    </td>
+                    <td>
+                        <input style="width: 80%" class="form-control" type="text" id="numberOfLosses"
+                               th:field="${newTeamInLeague.numberOfLosses}"/>
+                    </td>
+                    <td>
+                        <p>Pole nieobowiązkowe, jest ono automatycznie uzupełniane</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="btn btn-primary" id="addTeamMember" value="Dodaj"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <header th:text="${addedMessage}"></header>
+    </div>
+</div>
+</body>
+</html>

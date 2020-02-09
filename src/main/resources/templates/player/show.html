@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - gracze</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Wyszukaj gracza</header>
+
+        <table class="long-search-table">
+            <tr>
+                <td>
+                    <label for="nickname">Podaj nickname:</label>
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="nickname"/>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <button type="button" class="btn btn-primary" onclick="showPlayer()">Pokaż</button>
+        <br/>
+        <br/>
+
+        <script>
+            function showPlayer() {
+                const nickname = document.getElementById("nickname").value;
+                window.location.href = "/player/show/" + nickname;
+            }
+        </script>
+
+        <div class="wrapper">
+            <div class="infoTable">
+                <h2 id="playerName" th:text="${playerName}"></h2>
+
+                <table class="search-table">
+                    <tr>
+                        <td>
+                            <p>Nickname: </p>
+                        </td>
+                        <td>
+                            <p th:text="${player.nickname}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Imię:</p>
+                        </td>
+                        <td>
+                            <p th:text="${player.name}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Nazwisko:</p>
+                        </td>
+                        <td>
+                            <p th:text="${player.surname}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Wiek:</p>
+                        </td>
+                        <td>
+                            <p th:text="${player.age}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Pochodzenie:</p>
+                        </td>
+                        <td>
+                            <p th:text="${player.country}"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="infoTable">
+                <h2>Historia zespołów</h2>
+
+                <table class="long-search-table">
+                    <tr>
+                        <td><p>Nazwa zespołu</p></td>
+                        <td><p>Data dołączenia</p></td>
+                        <td><p>Data odejścia</p></td>
+                    </tr>
+                    <tr th:each="team: ${teamList}" class="clickable-row" th:data="${team.teamName}"
+                        th:onclick="javascript:rowClicked(this.getAttribute('data'));">
+                        <td><p th:text="${team.teamName}"></p></td>
+                        <td><p th:text="${team.dateFrom}"></p></td>
+                        <td><p th:text="${team.dateTo}"></p></td>
+                    </tr>
+                </table>
+                <script>
+                    function rowClicked(value) {
+                        location.href = "/team/show/" + value;
+                    }
+                </script>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="deletePlayer()">Usuń gracza</button>
+
+        <script th:inline="javascript">
+            function deletePlayer() {
+                const nickname = /*[[${player.id}]]*/ ' ';
+                window.location.href = "/player/delete/" + nickname;
+            }
+        </script>
+
+    </div>
+
+</div>
+</body>
+</html>

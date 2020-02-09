@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - druzyny</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Wyszukaj zespół</header>
+
+        <table class="long-search-table">
+            <tr>
+                <td>
+                    <label for="teamName">Podaj nazwe zespołu:</label>
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="teamName"/>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <button type="button" class="btn btn-primary" onclick="showTeam()">Pokaż</button>
+        <br/>
+        <br/>
+
+        <script>
+            function showTeam() {
+                var teamName = document.getElementById("teamName").value;
+                window.location.href = "/team/show/" + teamName;
+            }
+        </script>
+
+        <div class="wrapper">
+            <div class="infoTable">
+                <h2 th:text="${teamName}"></h2>
+
+                <table class="long-search-table">
+                    <tr>
+                        <td>
+                            <p>Nazwa druzyny: </p>
+                        </td>
+                        <td>
+                            <p th:text="${team.name}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Data stworzenia:</p>
+                        </td>
+                        <td>
+                            <p th:text="${team.creationDate}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Liczba rozegranych meczy:</p>
+                        </td>
+                        <td>
+                            <p th:text="${team.numberOfMatches}"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="infoTable">
+                <h2>Gracze w zespole</h2>
+
+                <table class="long-search-table">
+                    <tr>
+                        <td><p>Nickname</p></td>
+                        <td><p>Data dołączenia</p></td>
+                        <td><p>Data odejścia</p></td>
+                    </tr>
+                    <tr th:each="player: ${playerList}" class="clickable-row" th:data="${player.playerName}"
+                        th:onclick="javascript:rowClicked(this.getAttribute('data'));">
+                        <td><p th:text="${player.playerName}"></p></td>
+                        <td><p th:text="${player.dateFrom}"></p></td>
+                        <td><p th:text="${player.dateTo}"></p></td>
+                    </tr>
+                </table>
+                <script>
+                    function rowClicked(value) {
+                        location.href = "/player/show/" + value;
+                    }
+                </script>
+            </div>
+        </div>
+
+        <!--        <button type="button" class="btn btn-primary" onclick="deleteTeam()">Usuń zespół</button>-->
+
+        <!--        <script th:inline="javascript">-->
+        <!--            function deleteTeam() {-->
+        <!--                const nickname = /*[[${team.name}]]*/ ' ';-->
+        <!--                window.location.href = "/team/delete/" + nickname;-->
+        <!--            }-->
+        <!--        </script>-->
+    </div>
+
+</div>
+</body>
+</html>

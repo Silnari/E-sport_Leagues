@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - admin</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Dodaj drużynę do ligi</header>
+
+        <form th:action="@{/admin/add/match}" th:object="${newMatch}" method="post">
+            <table class="long-search-table">
+                <tr>
+                    <td>
+                        <p><label for="gameName">Podaj nazwę gry:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="gameName" th:field="${newMatch.gameName}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="teamName">Podaj nazwę drużyny:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="teamName" th:field="${newMatch.nameTeam1}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="team2Name">Podaj nazwę drugiej drużyny:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="team2Name" th:field="${newMatch.nameTeam2}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="team1points">Podaj punkty pierwszej drużyny:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="team1points" th:field="${newMatch.team1Points}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="team2points">Podaj punkty drugiej drużyny:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="team2points" th:field="${newMatch.team2Points}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="date">Podaj date:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="date" th:field="${newMatch.date}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="leagueName">Podaj nazwę ligi (*):</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="leagueName" th:field="${newMatch.leagueName}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="tournamentName">Podaj nazwę turnieju (*):</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="tournamentName"
+                               th:field="${newMatch.tournamentName}"/>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="btn btn-primary" id="addTeamMember" value="Dodaj"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <header th:text="${addedMessage}"></header>
+        <br/>
+        <p>(*) - należy wypełnić jedno z pól</p>
+    </div>
+</div>
+</body>
+</html>

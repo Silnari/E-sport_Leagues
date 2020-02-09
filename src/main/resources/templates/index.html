@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Ligi gier e-sportowych</header>
+        <p>Na tej stronie możesz dokładnie prześledzić wszystkie statystyki z dziedziny e-sportu.</p>
+        <ul>
+            <li>
+                <p>Pod zakładką <span style="color:#71c3bf">Gracz</span> można zobaczyć litę wszystkich graczy, wyszukać
+                    konkretnego gracza albo dodać nowego gracza.</p>
+            </li>
+            <li>
+                <p>Pod zakładką <span style="color:#71c3bf">Zespół</span> można zobaczyć listę wszystkich zespołów,
+                    wyszukać konkretny zespół albo utworzyć nowy.</p>
+            </li>
+            <li>
+                <p>Pod zakdładką <span style="color:#71c3bf">Liga</span> można liste wszyztkich lig lub zobaczyć
+                    szczegóły dodtyczące danej ligi.</p>
+            </li>
+            <li>
+                <p>Pod zakdładką <span style="color:#71c3bf">Liga</span> można liste wszyztkich lig lub zobaczyć
+                    szczegóły dodtyczące danej ligi.</p>
+            </li>
+            <li>
+                <p>Pod zakdładką <span style="color:#71c3bf">Turniej</span> można liste wszyztkich turniejów lub
+                    zobaczyć szczegóły dodtyczące danego turnieju.</p>
+            </li>
+            <li>
+                <p>Pod zakładką <span style="color:#71c3bf">Ranking</span> można zobaczyć ranking wszystkich drużyn lub
+                    ranking wybranej ligii.</p>
+            </li>
+            <li>
+                <p>Pod zakładką <span style="color:#71c3bf">Panel Administratora</span> można dodać nowe dane do bazy.
+                </p>
+            </li>
+            <li>
+                <p>Pod zakładką <span style="color:#71c3bf">O stronie</span> można uzyskać dodatkowe informacje o
+                    stronie</p>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>

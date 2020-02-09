@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>O Stronie</header>
+        <p>Strona została stworzona jako projekt z przedmiotu Bazy Danych.</p>
+        <p>Autorem Strony jest <span style="color:#71c3bf">Konrad Perłowski</span>.</p>
+        <p>Backend strony jest napisany w języku Java z wykorzystaniem framework Spring Boot.</p>
+        <p>Aplikacja korzysta z bazy danych znajdującej się na serwerze Pascal.</p>
+    </div>
+</div>
+</body>
+</html>

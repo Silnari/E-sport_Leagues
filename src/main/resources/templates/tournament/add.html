@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - turniej</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Dodaj turniej</header>
+
+        <form th:action="@{/admin/add/tournament}" th:object="${newTournament}" method="post">
+            <table class="long-search-table">
+                <tr>
+                    <td>
+                        <p><label for="gameName">Podaj nazwę gry:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="gameName" th:field="${newTournament.gameName}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="name">Podaj nazwę turnieju:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="name" th:field="${newTournament.name}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="desc">Podaj zasady:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="desc" th:field="${newTournament.rule}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="numberOfTeams">Podaj maksymalną liczbę drużyn:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="numberOfTeams"
+                               th:field="${newTournament.numberOfTeams}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="btn btn-primary" id="addPlayer" value="Dodaj"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <header th:text="${addedMessage}"></header>
+    </div>
+</div>
+</body>
+</html>

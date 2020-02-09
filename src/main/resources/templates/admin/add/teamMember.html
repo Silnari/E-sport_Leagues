@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - admin</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Dodaj gracza do zespołu</header>
+
+        <form th:action="@{/admin/add/teamMember}" th:object="${newTeamMember}" method="post">
+            <table class="long-search-table">
+                <tr>
+                    <td>
+                        <p><label for="nickname">Podaj nazwę gracza:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="nickname" th:field="${newTeamMember.playerName}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="name">Podaj nazwę drużyny:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="name" th:field="${newTeamMember.teamName}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="dateFrom">Podaj datę dołączenia do zespołu:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="dateFrom" th:field="${newTeamMember.dateFrom}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><label for="dateTo">Podaj datę opuszczenia zespołu:</label></p>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" id="dateTo" th:field="${newTeamMember.dateTo}"
+                               th:required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="btn btn-primary" id="addTeamMember" value="Dodaj"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <header th:text="${addedMessage}"></header>
+    </div>
+</div>
+</body>
+</html>

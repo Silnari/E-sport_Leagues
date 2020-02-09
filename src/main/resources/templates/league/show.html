@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <title>Esport - ligi</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("../../nav.html");
+        });
+    </script>
+
+    <div class="page-content">
+        <header>Szczegóły ligii</header>
+
+        <div class="wrapper">
+            <div class="infoTable">
+                <h2 th:text="${leagueName}"></h2>
+
+                <table class="long-search-table">
+                    <tr>
+                        <td>
+                            <p>Nazwa ligii: </p>
+                        </td>
+                        <td>
+                            <p th:text="${league.name}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Nazwa gry:</p>
+                        </td>
+                        <td>
+                            <p th:text="${league.gameName}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Maksymalna liczba druzyn:</p>
+                        </td>
+                        <td>
+                            <p th:text="${league.numberOfTeams}"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="infoTable">
+                <h2>Opis</h2>
+
+                <p th:text="${league.description}"></p>
+            </div>
+        </div>
+
+        <header>Mecze w lidze</header>
+
+        <table class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <tr>
+                <th>Druzyna 1</th>
+                <th>Druzyna 2</th>
+                <th>Punkty druzyna 1</th>
+                <th>Punkty druzyna 2</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="match: ${leagueMatches}">
+                <td th:text="${match.nameTeam1}"></td>
+                <td th:text="${match.nameTeam2}"></td>
+                <td th:text="${match.team1Points}"></td>
+                <td th:text="${match.team2Points}"></td>
+                <td th:text="${match.date}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+</body>
+</html>
